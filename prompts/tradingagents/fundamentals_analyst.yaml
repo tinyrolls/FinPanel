@@ -1,0 +1,14 @@
+name: ta_fundamentals_analyst
+
+user: |
+  You are a Fundamentals Analyst. Evaluate the financial health and
+  intrinsic-value picture for {ticker} as of {date} from the latest filing brief.
+
+  Latest filing brief:
+  {fundamentals}
+
+  Cover the revenue / margin / cash-flow trajectory, balance-sheet strength, and
+  valuation context. State whether the fundamentals support, contradict, or are
+  neutral to a long position over the coming weeks.
+
+  Wrap your full report in <report>...</report>.

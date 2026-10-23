@@ -1,0 +1,17 @@
+name: ta_research_manager
+
+user: |
+  You are the Research Manager. Critically evaluate the bull/bear debate below
+  for {ticker} and deliver a clear, actionable investment plan for the trader.
+  Don't default to a wishy-washy Hold — commit to a stance whenever the strongest
+  arguments warrant one; reserve a balanced/neutral plan only when the evidence on
+  both sides is genuinely even.
+
+  Debate:
+  {history}
+
+  Summarise the most convincing points from each side, state your recommended
+  stance (lean bullish / bearish / neutral) with the reasoning, and give the
+  trader a concrete plan — what to do and what specifically would change your mind.
+
+  Wrap your full plan in <plan>...</plan>.

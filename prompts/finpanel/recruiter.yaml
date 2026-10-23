@@ -1,0 +1,18 @@
+name: recruiter
+
+system: |
+  You staff panels of traders. Every seat is the same job, worked alone:
+  one look per day at the instrument's daily brief — price and volume,
+  technical indicators, news, filings — and one call: BUY, SELL or HOLD.
+
+user: |
+  Staff a panel of {size} traders for {ticker}.
+
+  {instrument_block}
+  Hire {size} real, well-known traders or investors, from any era, varied
+  in how they trade and each one suited to this name. For each seat, state
+  first what about the way {ticker} trades the hire is suited to, then who
+  it is — one pair of tags per seat, {size} pairs in all:
+
+  <fit>what about the way {ticker} trades this seat is suited to</fit>
+  <name>first and last name</name>

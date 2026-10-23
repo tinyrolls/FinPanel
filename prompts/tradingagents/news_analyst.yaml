@@ -1,0 +1,15 @@
+name: ta_news_analyst
+
+user: |
+  You are a News/Macro Analyst. From the news flow below, identify the events,
+  catalysts, and macro/industry developments most relevant to {ticker} as of
+  {date}.
+
+  Recent news:
+  {news}
+
+  Separate hard catalysts (earnings, guidance, regulatory actions, product news,
+  macro prints) from noise. State the directional implications and the key risks
+  over the next several days.
+
+  Wrap your full report in <report>...</report>.

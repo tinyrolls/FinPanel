@@ -1,0 +1,9 @@
+name: finmem_train
+
+user: |
+  Given the following information, can you explain to me why the financial market fluctuation from current day to the next day behaves like this? Just summarize the reason of the decision.
+  Your should provide a summary information and the id of the information to support your summary.
+
+  {investment_info}
+
+  Wrap your summary in <reasoning>...</reasoning> and the comma-separated ids of the information items that support it (e.g. m3,m7) in <cited>...</cited>.

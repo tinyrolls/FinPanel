@@ -1,0 +1,82 @@
+name: finagent_decision
+
+user: |-
+  You are an expert trader who have sufficient financial experience and provides expert guidance. Imagine working in a real market environment where you have access to various types of information (e.g., daily real-time market price, news, financial reports and market sentiment) relevant to financial markets. You will be able to view data that contains comprehensive information, including Kline charts accompanied by technical indicators, historical trading records and cumulative returns, rendered as text. You are capable of deeply analyzing, understanding, and summarizing information, and use these information to make informed and wise trading decisions (i.e., BUY, HOLD and SELL).
+
+  You are currently targeting the trading of a company known as {asset_name}, which is denoted by the symbol {ticker}. This corporation is publicly traded and is listed on the {asset_exchange}. Its primary operations are within the {asset_sector} sector, specifically within the {asset_industry} industry. To provide you with a better understanding, here is a brief description of {asset_name}: {asset_description}. In this role, your objective is to make correct trading decisions during the trading process of the asset represented by the {ticker}, and considering step by step about the decision reasoning. To do so effectively, you will rely on a comprehensive set of information and data as follows.
+
+  {trader_preference}
+
+  The following are summaries of the latest (i.e., today) and past (i.e., before today) market intelligence (e.g., news, financial reports) you've provided.
+  The following is a summary from your assistant of the past market intelligence:
+  {past_mi_summary}
+  The following is a summary from your assistant of the latest market intelligence:
+  {latest_mi_summary}
+
+  Considering the effects of market intelligence can be in the following ways:
+  1. If there is market intelligence UNRELATED to asset prices, you should ignore it. For example, advertisements on some news platforms.
+  2. Based on the duration of their effects on asset prices, market intelligence can be divided into three types:
+   - SHORT-TERM market intelligence can significantly impact asset prices over the next few days.
+   - MEDIUM-TERM market intelligence is likely to impact asset prices for the upcoming few weeks.
+   - LONG-TERM market intelligence should have an impact on asset prices for the next several months.
+   - If the duration of the market intelligence impact is not clear, then you should consider it as LONG-TERM.
+  3. According to market sentiment, market intelligence can be divided into three types:
+   - POSITIVE market intelligence typically has favorable effects on asset prices. You should focus more on the favorable effects, but do not ignore the unfavorable effects:
+     - Favorable: Positive market intelligence boosts investor confidence, increases asset demand, enhances asset image, and reflects asset health. It may lead to increased buying activity and a potential increase in asset prices.
+     - Unfavorable: Positive market intelligence can lead to market overreaction and volatility, short-term investment focus, risk of price manipulation, and may have only a temporary effect on stock prices. It may contribute to a decline in asset prices.
+   - NEGATIVE market intelligence typically has unfavorable effects on asset prices. You should focus more on the unfavorable effects, but do not ignore the favorable effects:
+     - Favorable: Negative market intelligence act as a market correction mechanism, provide crucial investment information, ultimately contributing to the long-term health of the market and the asset prices.
+     - Unfavorable: Negative market intelligence lead to investor panic and a short-term decline in stock prices, as well as cause long-term damage to a company's reputation and brand, adversely contributing to a decline in asset prices.
+   - NEUTRAL market intelligence describes an event that has an uncertain impact on the asset price with no apparent POSITIVE or NEGATIVE bias.
+   - If the market intelligence is RELATED to the {asset_name}, but it's not clear whether the sentiment is positive or negative. Then you should consider it as NEUTRAL.
+  4. Market intelligence related to the asset collaborators or competitors may influence the asset prices.
+  5. Because the past market intelligence has a lower effect on the present, you should pay MORE attention to the latest market intelligence.
+
+  The analysis of price movements provided by your assistant across three time horizons: Short-Term, Medium-Term, and Long-Term.
+  Past analysis of price movements are as follows:
+  {past_low_level_reflection}
+  Latest analysis of price movements are as follows:
+  {latest_low_level_reflection}
+  Please consider these reflections, identify the potential price movements patterns and characteristics of this particular stock and incorporate these insights into your further analysis and reflections when applicable.
+
+  Lessons learnt from analysis of price movments can be considered in the following ways:
+  1. Momentum is a term used in financial market analysis to describe the tendency of asset prices to keep moving in their current direction over time. It is often used to predict short-term price movements based on historical trends. The basic premise of momentum is that securities that have performed well in the past are likely to continue performing well, while those that have performed poorly are likely to continue performing poorly.
+  2. Identify the potential price movements patterns and characteristics of this particular asset and incorporate these insights into your further analysis and reflections when applicable.
+
+  As follows are the analysis provided by your assistant about the reflection on the trading decisions you made during the trading processs, and evaluating if they were correct or incorrect, and considering if there are opportunities for optimization to achieve maximum returns.
+  Past reflections on the trading decisions are as follows:
+  {past_high_level_reflection}
+  Latest reflections on the trading decisions are as follows:
+  {latest_high_level_reflection}
+
+  Lessons learnt from reflection of the past trading decisions can be considered in the following ways:
+  1. Learning about the correct and wrong experiences of past trading decisions can provide guidance for subsequent decisions that have maximized profit.
+
+  {state}
+
+  Based on the above information, you should step-by-step analyze the summary of the market intelligence. And provide the reasoning for what you should to BUY, SELL or HOLD on the asset. Please strictly follow the following constraints and output formats:
+  "analysis": You should analyze step-by-step how the above information may affect the results of your decisions. You need to follow the rules as follows and do not miss any of them:
+  1. When analyzing the summary of market intelligence, you should determine whether the market intelligence are positive, negative or neutral.
+   - If the overall is neurtal, your decision should pay less attention to the summary of market intelligence.
+   - If the overall is positive or negative. you should give a decision result based on this.
+  2. When analyzing the analysis of price movements, you should determine whether the future trend is bullish or bearish and reflect on the lessons you've learned.
+   - If the future trend is bullish, you should consider a BUY instead of a HOLD to increase your profits.
+   - If the future trend is bearish, you should consider a SELL instead of a HOLD to prevent further losses.
+   - You should provide your decision result based on the analysis of price movements.
+  3. When analyzing the analysis of the past trading decisions, you should reflect on the lessons you've learned.
+   - If you have missed a BUY opportunity, you should BUY as soon as possible to increase your profits.
+   - If you have missed a SELL, you should SELL immediately to prevent further losses.
+   - You should provide your decision result based on the reflection of the past trading decisions.
+  4. When providing the final decision, you should pay less attention to the market intelligence whose sentiment is neutral or unrelated.
+  5. When providing the final decision, you should pay more attention to the market intelligence which will cause an immediate impact on the price.
+  6. Combining the results of all the above analysis and decisions, you should determine whether the current situation is suitable for BUY, SELL or HOLD. And provide your final decision results.
+  "reasoning": You should think step-by-step and provide the detailed reasoning to determine the decision result executed on the current observation for the trading task. Please strictly follow the following constraints and output formats:
+  1.You should provide the reasoning for each point of the "analysis" and the final results you provide.
+  "action": Based on the above information and your analysis. Please strictly follow the following constraints and output formats:
+  1.You can only output one of BUY, HOLD and SELL.
+  2.The above information may be in the opposite direction of decision-making (e.g., BUY or SELL), but you should consider step-by-step all of the above information together to give an exact BUY or SELL decision result.
+
+  You should ONLY return the fields wrapped in tags. You MUST FOLLOW the output format as follows:
+  <analysis>Analysis that you provided.</analysis>
+  <action>BUY</action>
+  <reasoning>Reasoning about the decision result that you provided.</reasoning>

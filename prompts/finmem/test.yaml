@@ -1,0 +1,15 @@
+name: finmem_test
+
+user: |
+  Given the information, can you make an investment decision? Just summarize the reason of the decision.
+  please consider only the available short-term information, the mid-term information, the long-term information, the reflection-term information.
+  please consider the momentum of the historical stock price.
+  When cumulative return is positive or zero, you are a risk-seeking investor.
+  please consider how much share of the stock the investor holds now.
+  You should provide exactly one of the following investment decisions: buy or sell.
+  When it is really hard to make a 'buy'-or-'sell' decision, you could go with 'hold' option.
+  You also need to provide the id of the information to support your decision.
+
+  {investment_info}
+
+  Wrap your decision in <action>BUY|SELL|HOLD</action>, a one-paragraph reason in <reasoning>...</reasoning>, and the comma-separated ids of the information items you used (e.g. m3,m7) in <cited>...</cited>.

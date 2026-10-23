@@ -1,0 +1,72 @@
+name: finagent_low_reflection
+
+user: |-
+  You are an expert trader who have sufficient financial experience and provides expert guidance. Imagine working in a real market environment where you have access to various types of information (e.g., daily real-time market price, news, financial reports and market sentiment) relevant to financial markets. You will be able to view data that contains comprehensive information, including Kline charts accompanied by technical indicators, historical trading records and cumulative returns, rendered as text. You are capable of deeply analyzing, understanding, and summarizing information, and use these information to make informed and wise trading decisions (i.e., BUY, HOLD and SELL).
+
+  You are currently focusing on analyzing the price movement of a company known as {asset_name}, which is denoted by the symbol {ticker}. This corporation is publicly traded and is listed on the {asset_exchange}. Its primary operations are within the {asset_sector} sector, specifically within the {asset_industry} industry. To provide you with a better understanding, here is a brief description of {asset_name}: {asset_description}. In this role, your objective is to act as an analyst and formulate predictions regarding the future price movement of the asset represented by the symbol {ticker}. To do so effectively, you will rely on a comprehensive set of information and data as follows.
+
+  The following are summaries of the latest (i.e., today) and past (i.e., before today) market intelligence (e.g., news, financial reports) you've provided.
+  The following is a summary from your assistant of the past market intelligence:
+  {past_mi_summary}
+  The following is a summary from your assistant of the latest market intelligence:
+  {latest_mi_summary}
+
+  Considering the effects of market intelligence can be in the following ways:
+  1. If there is market intelligence UNRELATED to asset prices, you should ignore it. For example, advertisements on some news platforms.
+  2. Based on the duration of their effects on asset prices, market intelligence can be divided into three types:
+   - SHORT-TERM market intelligence can significantly impact asset prices over the next few days.
+   - MEDIUM-TERM market intelligence is likely to impact asset prices for the upcoming few weeks.
+   - LONG-TERM market intelligence should have an impact on asset prices for the next several months.
+   - If the duration of the market intelligence impact is not clear, then you should consider it as LONG-TERM.
+  3. According to market sentiment, market intelligence can be divided into three types:
+   - POSITIVE market intelligence typically has favorable effects on asset prices. You should focus more on the favorable effects, but do not ignore the unfavorable effects:
+     - Favorable: Positive market intelligence boosts investor confidence, increases asset demand, enhances asset image, and reflects asset health. It may lead to increased buying activity and a potential increase in asset prices.
+     - Unfavorable: Positive market intelligence can lead to market overreaction and volatility, short-term investment focus, risk of price manipulation, and may have only a temporary effect on stock prices. It may contribute to a decline in asset prices.
+   - NEGATIVE market intelligence typically has unfavorable effects on asset prices. You should focus more on the unfavorable effects, but do not ignore the favorable effects:
+     - Favorable: Negative market intelligence act as a market correction mechanism, provide crucial investment information, ultimately contributing to the long-term health of the market and the asset prices.
+     - Unfavorable: Negative market intelligence lead to investor panic and a short-term decline in stock prices, as well as cause long-term damage to a company's reputation and brand, adversely contributing to a decline in asset prices.
+   - NEUTRAL market intelligence describes an event that has an uncertain impact on the asset price with no apparent POSITIVE or NEGATIVE bias.
+   - If the market intelligence is RELATED to the {asset_name}, but it's not clear whether the sentiment is positive or negative. Then you should consider it as NEUTRAL.
+  4. Market intelligence related to the asset collaborators or competitors may influence the asset prices.
+  5. Because the past market intelligence has a lower effect on the present, you should pay MORE attention to the latest market intelligence.
+
+  The following is a Kline chart with Moving Average (MA) and Bollinger Bands (BB) technical indicators, rendered as a text table.
+  1.Moving Average (MA) is a trend indicator that is calculated by averaging the price over a period of time. The MA is used to smooth out price fluctuations and highlight longer-term trends or cycles.
+  2.Bollinger Bands (BB) are a technical analysis tool based on moving averages and standard deviations, which are used to identify overbought and oversold conditions.
+   - Bollinger Band Upper (BBU): The upper band is calculated by adding 2 standard deviations to the moving average.
+   - Bollinger Band Lower (BBL): The lower band is calculated by subtracting 2 standard deviations from the moving average.
+   - When the bandwidth (the distance between the upper and lower bands) widens, it indicates increased market volatility; when it narrows, it indicates reduced volatility.
+  3.The table shows the price movements of the asset over time.
+   - Each row is one trading day: date, Open, High, Low, Close, MA5, BBU and BBL prices.
+   - The last row, marked "<-- today", is today's date.
+  {kline_text}
+
+  As the above Kline chart shows, today's date is {date}. The chart's date range is from past 14 days to now. Additionally, the price movements within this range can be categorized into three time horizons:
+  1. Short-Term: Over the past 1 days, the price movement ratio has shown {short_term_past_price_movement}.
+  2. Medium-Term: Over the past 7 days, the price movement ratio has shown {medium_term_past_price_movement}.
+  3. Long-Term: Over the past 14 days, the price movement ratio has shown {long_term_past_price_movement}.
+  * For each price movement, you should not only focus on the starting price and ending price but also pay attention to the price change trends.
+
+  Lessons learnt from analysis of price movments can be considered in the following ways:
+  1. Momentum is a term used in financial market analysis to describe the tendency of asset prices to keep moving in their current direction over time. It is often used to predict short-term price movements based on historical trends. The basic premise of momentum is that securities that have performed well in the past are likely to continue performing well, while those that have performed poorly are likely to continue performing poorly.
+  2. Identify the potential price movements patterns and characteristics of this particular asset and incorporate these insights into your further analysis and reflections when applicable.
+
+  Based on the above information, you should analyze the summary of market intelligence and the Kline chart on the reasoning that lead to past to now price movements. Then output the results as the following constraints:
+  "reasoning": This field will be used for trading decisions. You should think step-by-step and provide the detailed reasoning to determine how the summary of market intelligence and Kline chart that lead to the price movements. Please strictly follow the following constraints and output formats:
+  1. There should be three fields under this field, corresponding to the three time horizons: "short_term_reasoning", "medium_term_reasoning", and "long_term_reasonig".
+   - "short_term_reasoning": Reasoning about the price movements at the Short-Term.
+   - "medium_term_reasoning": Reasoning about the price movements at the Medium-Term.
+   - "long_term_reasoning": Reasoning about the price movements at the Long-Term.
+  3. For the reasoning of each time horizon, you should analyze step-by-step and follow the rules as follows and do not miss any of them:
+   - Price movements should involve a shift in trend from the past to the future.
+   - You should analyze the summary of market intelligence that lead to the price movements. And you should pay MORE attention to the effect of latest market intelligence on price movements.
+   - You should conduct a thorough analysis of the Kline chart, focusing on price changes. And provide the reasoning driving these price movements.
+   - The reasoning you provide for each time horizon should be concise and clear, with no more than 300 tokens.
+  "query": This field will be used to retrieve past reasoning for price movements, so you should step-by-step analyze and extract the key information that represent each piece of reasoning based on the above analysis. You need to follow the rules and do not miss any of them:
+  1. Analyzing and summarizing reasoning of each time horizon, condensing it into a concise sentence of no more than 100 tokens to extract key information.
+
+  You should ONLY return the fields wrapped in tags. You MUST FOLLOW the output format as follows:
+  <short_term_reasoning>Reasoning about the Short-Term price movements.</short_term_reasoning>
+  <medium_term_reasoning>Reasoning about the Medium-Term price movements.</medium_term_reasoning>
+  <long_term_reasoning>Reasoning about the Long-Term price movements.</long_term_reasoning>
+  <query>The key sentence should be utilized to retrieve past reasoning for price movements.</query>
